@@ -8,3 +8,13 @@ width: 100%;
   padding: 30px;
 
 }
+@media (max-width: 768px) {
+  .alignment {
+    flex-direction: column; /* Vertical layout for medium screens and smaller */
+    align-items: center; /* Optional: center align items horizontally */
+  }
+
+  .alignment app-add-workout, .alignment app-workout-list {
+    width: 100%; /* Optional: make child elements take full width */
+  }
+}

@@ -9,7 +9,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelect } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-add-workout',
   standalone: true,
@@ -44,7 +44,7 @@ export class AddWorkoutComponent {
 
   workoutTypes: string[] = ['Running', 'Cycling', 'Swimming', 'Yoga'];
 
-  constructor(private userService: UserService,private fb:FormBuilder,private snackBar:MatSnackBar) {}
+  constructor(private userService: UserService,private fb:FormBuilder) {}
 
   ngOnInit(): void {
    this.initializeForm();
@@ -85,11 +85,8 @@ export class AddWorkoutComponent {
       control.markAsPristine();
     });
     this.filteredUsers = this.users;
-    this.snackBar.open('User added successfully', 'Close', {
-      duration: 3000, // Duration in milliseconds
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
 
-    });
   }
+
+
 }

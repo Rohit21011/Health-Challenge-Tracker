@@ -35,7 +35,7 @@
       <th mat-header-cell *matHeaderCellDef> Workouts </th>
       <td mat-cell *matCellDef="let element">
         <div *ngFor="let workout of element.workouts">
-          {{ workout.type }}
+          {{ workout.type }} - {{ workout.minutes }}min
         </div>
       </td>
     </ng-container>

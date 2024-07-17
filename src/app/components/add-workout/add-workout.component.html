@@ -1,0 +1,23 @@
+<div class="user-form-container">
+  <h2>Add New User</h2>
+  <form  [formGroup]="workoutForm">
+  <mat-form-field class="input-field" appearance="outline">
+    <mat-label>User Name</mat-label>
+    <input matInput  formControlName="name" placeholder="User Name">
+    <mat-error  *ngIf="workoutForm.get('name')?.hasError('required')">Name should not be blank</mat-error>
+  </mat-form-field>
+  <mat-form-field class="input-field" appearance="outline">
+    <mat-label>Workout Type</mat-label>
+    <mat-select  formControlName="types" placeholder="Workout Type">
+      <mat-option *ngFor="let type of workoutTypes" [value]="type">{{ type }}</mat-option>
+    </mat-select>
+    <mat-error  *ngIf=" workoutForm.get('types')?.hasError('required')">Select workout type</mat-error>
+  </mat-form-field>
+  <mat-form-field class="input-field" appearance="outline">
+    <mat-label>Workout Minutes</mat-label>
+    <input matInput formControlName="minutes" placeholder="Workout Minutes" type="number">
+    <mat-error  *ngIf="workoutForm.get('minutes')?.hasError('required')">Workout Minutes should not be blank</mat-error>
+  </mat-form-field>
+  <button (click)="addWorkout(workoutForm.value)" mat-flat-button>Add User</button>
+  </form>
+</div>

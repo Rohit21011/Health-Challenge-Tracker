@@ -1,0 +1,23 @@
+<div class="container">
+  <!-- User List on the left side -->
+  <div class="user-list">
+    <!-- <mat-card *ngFor="let user of users" (click)="selectUser(user)">
+      <mat-card-content>
+        {{ user.name }}
+      </mat-card-content>
+    </mat-card> -->
+  </div>
+
+  <!-- Chart Container on the right side -->
+  <div class="chart-container">
+    <!-- Display chart only if user is selected -->
+    <div *ngIf="selectedUser">
+      <!-- Use canvasjs-angular-chart to render the chart -->
+      <canvasjs-chart [options]="chartOptions"></canvasjs-chart>
+    </div>
+    <!-- Optionally, display a message if no user is selected -->
+    <div *ngIf="!selectedUser">
+      <p>Select a user to display their workout chart.</p>
+    </div>
+  </div>
+</div>

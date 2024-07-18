@@ -65,9 +65,16 @@ export class AddWorkoutComponent {
   }
   initializeForm() {
     this.workoutForm = this.fb.group({
-      name: ['', [Validators.required]],
-      types: ['', [Validators.required]],
-      minutes: ['', [Validators.required]],
+      name: ['', [
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z][a-zA-Z0-9]*$/),
+        Validators.minLength(3)
+      ]],
+      types: ['', Validators.required],
+      minutes: ['', [
+        Validators.required,
+        Validators.min(1) // Workout minutes must be greater than 0
+      ]]
     });
   }
   addWorkout(value: workoutForm) {
@@ -97,12 +104,12 @@ export class AddWorkoutComponent {
       this.userService.addUser(newUser);
     }
     this.workoutForm.reset();
-    (Object as any)
-      .values(this.workoutForm.controls)
-      .forEach((control: FormControl) => {
-        control.markAsUntouched();
-        control.markAsPristine();
-      });
+    this.workoutForm.markAsPristine();
+    this.workoutForm.markAsUntouched();
+
+    Object.values(this.workoutForm.controls).forEach(control => {
+      control.setErrors(null);
+    });
     this.filteredUsers = this.users;
     this.snackBar.open('Workout added successfully', 'Close', {
       duration: 3000,

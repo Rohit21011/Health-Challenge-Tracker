@@ -15,15 +15,15 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     MatFormFieldModule,
-     MatInputModule,
-     MatOption,
-     MatPaginatorModule,
-     MatSelect,
+    MatInputModule,
+    MatOption,
+    MatPaginatorModule,
+    MatSelect,
     MatTableModule,
-     FormsModule
+    FormsModule,
   ],
   templateUrl: './workout-list.component.html',
-  styleUrl: './workout-list.component.css'
+  styleUrl: './workout-list.component.css',
 })
 export class WorkoutListComponent {
   users: User[] = [];
@@ -40,16 +40,20 @@ export class WorkoutListComponent {
     this.filteredUsers = this.users;
   }
   onPageChange(event: PageEvent) {
-    this.itemsPerPage = event.pageSize; // Update itemsPerPage with new page size
-    // You can also update your data fetching logic based on the new page size here
+    this.itemsPerPage = event.pageSize;
+    this.currentPage = event.pageIndex + 1; // pageIndex is zero-based, so add 1 for current page
   }
 
   searchByName() {
-    this.filteredUsers = this.users.filter(user => user.name.toLowerCase().includes(this.searchText.toLowerCase()));
+    this.filteredUsers = this.users.filter((user) =>
+      user.name.toLowerCase().includes(this.searchText.toLowerCase())
+    );
   }
 
   filterByType() {
-    this.filteredUsers = this.users.filter(user => user.workouts.some(workout => workout.type === this.filterType));
+    this.filteredUsers = this.users.filter((user) =>
+      user.workouts.some((workout) => workout.type === this.filterType)
+    );
   }
 
   getTotalWorkoutTime(workouts: any[]): number {

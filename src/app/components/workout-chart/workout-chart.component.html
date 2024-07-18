@@ -1,4 +1,19 @@
-<div >
-   <li *ngFor="let userData of user" (click)="showGraph(userData)">{{userData?.name}}</li>
-  <div id="chartContainer" style="height: 370px; width: 100%; margin:auto;"></div>
+<div class="d-dflex">
+  <div class="user-list-card">
+    <mat-list>
+      <mat-list-item
+        *ngFor="let userData of user"
+        (click)="showGraph(userData)"
+        [class.selected]="userData === selectedUser"
+      >
+        {{ userData.name }}
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <div style="width: 800px">
+    <div
+      id="chartContainer"
+      style="height: 370px; width: 100%; margin: auto"
+    ></div>
+  </div>
 </div>

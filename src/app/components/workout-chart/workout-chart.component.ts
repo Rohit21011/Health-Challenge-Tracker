@@ -1,6 +1,8 @@
 import { UserService } from './../../services/user.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
 import {
   CanvasJS,
   CanvasJSAngularChartsModule,
@@ -9,21 +11,29 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-workout-chart',
   standalone: true,
-  imports: [CanvasJSAngularChartsModule, CommonModule],
+  imports: [
+    CanvasJSAngularChartsModule,
+    CommonModule,
+    MatListModule,
+    MatCardModule,
+
+  ],
   templateUrl: './workout-chart.component.html',
   styleUrl: './workout-chart.component.css',
 })
 export class WorkoutChartComponent implements OnInit {
   user: User[];
-
+  selectedUser: User | null = null;
   chartOptions: any;
   constructor(private userService: UserService) {}
   ngOnInit(): void {
     this.user = this.userService.getUsers();
     this.updateChartData(this.user[0]);
+    this.selectedUser = this.user[0];
   }
   showGraph(user: User) {
     this.updateChartData(user);
+    this.selectedUser = user;
   }
 
   updateChartData(user: User): void {
@@ -33,9 +43,9 @@ export class WorkoutChartComponent implements OnInit {
         y: workout.minutes,
       }));
       let chart = new CanvasJS.Chart('chartContainer', {
-        theme: 'light1', // "light2", "dark1", "dark2"
+        theme: 'light2',
         title: {
-          text: 'Basic Column Chart in Angular 12',
+          text: user.name,
         },
         data: [
           {

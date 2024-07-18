@@ -32,8 +32,8 @@ describe('UserService', () => {
       {
         id: 4,
         name: 'Alice Cooper',
-        workouts: [{ type: 'Running', minutes: 30 }]
-      }
+        workouts: [{ type: 'Running', minutes: 30 }],
+      },
     ];
     localStorage.setItem('users', JSON.stringify(mockUsers));
 
@@ -57,7 +57,7 @@ describe('UserService', () => {
     const newUser: User = {
       id: 4,
       name: 'Alice Cooper',
-      workouts: [{ type: 'Running', minutes: 30 }]
+      workouts: [{ type: 'Running', minutes: 30 }],
     };
 
     service.addUser(newUser);

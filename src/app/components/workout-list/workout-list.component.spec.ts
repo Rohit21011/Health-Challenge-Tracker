@@ -20,12 +20,14 @@ describe('WorkoutListComponent', () => {
 
   const mockUsers: User[] = [
     {
-      name: 'John Doe', workouts: [{ type: 'Cardio', minutes: 30 }],
-      id: 0
+      name: 'John Doe',
+      workouts: [{ type: 'Cardio', minutes: 30 }],
+      id: 0,
     },
     {
-      name: 'Jane Doe', workouts: [{ type: 'Strength', minutes: 45 }],
-      id: 0
+      name: 'Jane Doe',
+      workouts: [{ type: 'Strength', minutes: 45 }],
+      id: 0,
     },
   ];
 
@@ -44,11 +46,9 @@ describe('WorkoutListComponent', () => {
         MatTableModule,
         FormsModule,
         BrowserAnimationsModule, // Add BrowserAnimationsModule here
-        WorkoutListComponent // Import the standalone component
+        WorkoutListComponent, // Import the standalone component
       ],
-      providers: [
-        { provide: UserService, useValue: userServiceSpy }
-      ]
+      providers: [{ provide: UserService, useValue: userServiceSpy }],
     }).compileComponents();
 
     userService = TestBed.inject(UserService);
